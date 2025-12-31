@@ -14,16 +14,38 @@ function Signup() {
       alert("Signup successful! Please login.");
       navigate("/login");
     } catch (err) {
-      alert(err.response.data.error);
+      alert(err.response?.data?.error || "Something went wrong");
     }
   };
 
   return (
-    <form onSubmit={handleSignup}>
-      <input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-      <button type="submit">Signup</button>
-    </form>
+    <div className="h-screen flex items-center justify-center bg-gray-100">
+      <form
+        onSubmit={handleSignup}
+        className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
+      >
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Signup</h2>
+        <input
+          className="w-full mb-4 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="w-full mb-4 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
+        >
+          Signup
+        </button>
+      </form>
+    </div>
   );
 }
 
